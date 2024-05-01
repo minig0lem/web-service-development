@@ -33,7 +33,7 @@ public class UserService {
 
     public void save(User user) {
         userRepository.save(user)
-                .orElseThrow(() -> new IllegalArgumentException("중복된 아이디입니다."));
+                .orElseThrow(() -> new UserException("중복된 아이디입니다.", ErrorCode.INTER_SERVER_ERROR));
     }
 
     @Transactional
@@ -105,9 +105,6 @@ public class UserService {
             affectedRows = userRepository.updateUser(id, updateMyInfoRequest.getEmail(), updateMyInfoRequest.getPhone_number());
         }
 
-        if(affectedRows == 0) {
-            throw new DataAccessException("업데이트 오류") {};
-        }
     }
 
     @Transactional
