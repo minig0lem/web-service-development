@@ -34,7 +34,7 @@ public class BoardCommentController {  // 게시판 댓글 Controller
                             @ExampleObject(value = "{}")})
             })
     })
-    public ResponseEntity<String> postCreateComment(@PathVariable int boardId, @RequestBody BoardCommentDto.BoardCommentCreateAndUpdate form) {
+    public ResponseEntity<String> postCreateComment(@PathVariable(value = "boardId") int boardId, @RequestBody BoardCommentDto.BoardCommentCreateAndUpdate form) {
         boardCommentService.createComment(form, boardId);
 
         return ResponseEntity.ok("{}");

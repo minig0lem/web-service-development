@@ -5,3 +5,22 @@ INSERT INTO ticket(hour) values (2);
 INSERT INTO ticket(hour) values (24);
 
 INSERT INTO user(user_id, password, email, phone_number, pw_question, pw_answer, role) values ('test', '1234', 'test', 'test', 1, 'test', 'user');
+
+INSERT INTO location(location_id, address, latitude, longitude) values ('ST-10', '서울특별시 마포구 양화로 93 427', '37.552746', '126.918617');
+INSERT INTO location(location_id, address, latitude, longitude) values ('ST-100', '서울특별시 광진구 아차산로 262 더샵스타시티 C동 앞', '37.536667', '127.073593');
+INSERT INTO location(location_id, address, latitude, longitude) values ('ST-1000', '서울특별시 양천구 신정동 236 서부식자재마트 건너편', '37.51038', '126.866798');
+INSERT INTO location(location_id, address, latitude, longitude) values ('ST-1002', '서울특별시 양천구 목동동로 316-6 서울시 도로환경관리센터', '37.5299', '126.876541');
+INSERT INTO location(location_id, address, latitude, longitude) values ('ST-1003', '서울특별시 양천구 화곡로 59 신월동 이마트', '37.539551', '126.8283');
+
+INSERT INTO bike(bike_id, location_id) values ('SPB-30063', 'ST-10');
+INSERT INTO bike(bike_id, location_id) values ('SPB-30074', 'ST-10');
+INSERT INTO bike(bike_id, location_id) values ('SPB-30213', 'ST-10');
+INSERT INTO bike(bike_id, location_id) values ('SPB-30241', 'ST-10');
+INSERT INTO bike(bike_id, location_id) values ('SPB-30259', 'ST-10');
+INSERT INTO bike(bike_id, location_id) values ('SPB-30358', 'ST-100');
+INSERT INTO bike(bike_id, location_id) values ('SPB-30400', 'ST-100');
+
+INSERT INTO board(user_id, title, content) values ('test', 'test title', 'test content');
+
+INSERT INTO board_comments(user_id, board_id, content) values ('test', 1, 'test comment');
+

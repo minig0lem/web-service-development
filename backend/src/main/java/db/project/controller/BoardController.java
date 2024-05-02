@@ -36,7 +36,7 @@ public class BoardController {  // 게시판 Controller
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 게시물 리스트
-    public ResponseEntity<BoardDto.BoardListResponse> getBoardList(@PathVariable(required = false) Optional<Integer> page) {
+    public ResponseEntity<BoardDto.BoardListResponse> getBoardList(@PathVariable(value = "page", required = false) Optional<Integer> page) {
 
         return ResponseEntity.ok(boardService.boardList(page));
     }
@@ -53,7 +53,7 @@ public class BoardController {  // 게시판 Controller
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 게시물 상세정보
-    public ResponseEntity<BoardDto.BoardInfo> getBoardInfo(@PathVariable int boardId) {
+    public ResponseEntity<BoardDto.BoardInfo> getBoardInfo(@PathVariable(value = "boardId") int boardId) {
 
         return ResponseEntity.ok(boardService.boardInfo(boardId));
     }

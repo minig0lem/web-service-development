@@ -6,6 +6,7 @@ import db.project.exceptions.ErrorCode;
 import db.project.repository.BoardCommentRepository;
 import db.project.repository.BoardRepository;
 import db.project.repository.BoardViewsRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,7 +57,6 @@ public class BoardService {
     @Transactional
     public BoardDto.BoardInfo boardInfo(int boardId) {
         String user_id = SecurityContextHolder.getContext().getAuthentication().getName();
-
         Optional<Integer> view_id = boardViewsRepository.findIdByBoardAndUser(boardId, user_id);
         if(view_id.isEmpty()) {
             Optional<Integer> checkPage = boardViewsRepository.createBoardViews(boardId, user_id);
