@@ -1,10 +1,13 @@
 INSERT INTO question(content) values ('졸업한 초등학교 이름');
 INSERT INTO question(content) values ('졸업한 중학교 이름');
-INSERT INTO ticket(hour) values (1);
-INSERT INTO ticket(hour) values (2);
-INSERT INTO ticket(hour) values (24);
+INSERT INTO ticket(hour, price) values (1, 1000);
+INSERT INTO ticket(hour, price) values (2, 2000);
+INSERT INTO ticket(hour, price) values (24, 24000);
 
-INSERT INTO user(user_id, password, email, phone_number, pw_question, pw_answer, role) values ('test', '1234', 'test', 'test', 1, 'test', 'user');
+INSERT INTO user(user_id, password, email, phone_number, pw_question, pw_answer, role, ticket_id) values ('test', '1234', 'test', 'test', 1, 'test', 'user', 1);
+INSERT INTO user(user_id, password, email, phone_number, pw_question, pw_answer, role, overfee) values ('test2', '1234', 'test', 'test', 1, 'test', 'user', 1000);
+INSERT INTO user(user_id, password, email, phone_number, pw_question, pw_answer, role) values ('test3', '1234', 'test', 'test', 1, 'test', 'user');
+
 
 INSERT INTO location(location_id, address, latitude, longitude) values ('ST-10', '서울특별시 마포구 양화로 93 427', '37.552746', '126.918617');
 INSERT INTO location(location_id, address, latitude, longitude) values ('ST-100', '서울특별시 광진구 아차산로 262 더샵스타시티 C동 앞', '37.536667', '127.073593');
@@ -23,4 +26,7 @@ INSERT INTO bike(bike_id, location_id) values ('SPB-30400', 'ST-100');
 INSERT INTO board(user_id, title, content) values ('test', 'test title', 'test content');
 
 INSERT INTO board_comments(user_id, board_id, content) values ('test', 1, 'test comment');
+
+INSERT INTO favorites(user_id, location_id) values ('test', 'ST-1002');
+
 

@@ -24,7 +24,8 @@ public class FavoritesRepository {
         final MapSqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("user_id", user_id)
                 .addValue("location", "%" + favoritesSearchDto.getLocation() + "%");
-        String sql = "SELECT l.location_id, address, IF(f.location_id IS NULL, 0, 1) AS favorite FROM location l LEFT JOIN favorites f ON " +
+        //IF(f.location_id IS NULL, 0, 1) AS favorite FROM location
+        String sql = "SELECT l.location_id, address, CASE WHEN f.location_id IS NULL THEN 0 ELSE 1 END AS favorite FROM location l LEFT JOIN favorites f ON " +
                 "l.location_id = f.location_id AND f.user_id =:user_id WHERE l.address LIKE :location ORDER BY favorite desc, l.location_id";
         return jdbcTemplate.query(sql, namedParameters, new BeanPropertyRowMapper<>(FavoritesDto.Favorites.class));
     }

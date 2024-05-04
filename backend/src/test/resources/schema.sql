@@ -7,6 +7,7 @@ CREATE TABLE question(
 CREATE TABLE ticket(
 	ticket_id int not null auto_increment,
     hour varchar(10) not null,
+    price int not null,
     PRIMARY KEY(ticket_id)
 );
 

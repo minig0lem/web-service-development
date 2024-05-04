@@ -1,9 +1,6 @@
 package db.project.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +19,18 @@ public class FavoritesDto {
     }
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class FavoritesChange {
         private String location;
         private boolean favorite;
     }
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class FavoritesSearch {
         private String location;
     }
