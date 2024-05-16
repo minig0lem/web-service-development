@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.is;
 @AutoConfigureMockMvc
 public class FavoritesControllerTest {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Test
     @WithMockUser(username = "test")

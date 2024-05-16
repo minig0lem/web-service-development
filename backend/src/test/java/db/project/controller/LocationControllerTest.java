@@ -23,11 +23,11 @@ import static org.hamcrest.Matchers.is;
 @AutoConfigureMockMvc
 public class LocationControllerTest {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Test
     @WithMockUser(roles = {"USER", "ADMIN"})
-    @DisplayName("대여소 리스트 조회 성공 테스트")
+    @DisplayName("대여소 리스트 조회 성공 테스트 (관리자)")
     void getLocationListTest() throws Exception {
         //Given
         //When

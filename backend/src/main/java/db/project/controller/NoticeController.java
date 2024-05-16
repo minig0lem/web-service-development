@@ -36,7 +36,7 @@ public class NoticeController {  // 공지사항 Controller
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 공지사항 리스트
-    public ResponseEntity<NoticeDto.NoticeListResponse> getNoticeList(@PathVariable(required = false) Optional<Integer> page) {
+    public ResponseEntity<NoticeDto.NoticeListResponse> getNoticeList(@PathVariable(name = "page", required = false) Optional<Integer> page) {
 
         return ResponseEntity.ok(noticeService.noticeList(page));
     }
@@ -53,7 +53,7 @@ public class NoticeController {  // 공지사항 Controller
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 공지사항 상세정보
-    public ResponseEntity<NoticeDto.NoticeInfo> getNoticeInfo(@PathVariable int noticeId) {
+    public ResponseEntity<NoticeDto.NoticeInfo> getNoticeInfo(@PathVariable(name = "noticeId") int noticeId) {
 
         return ResponseEntity.ok(noticeService.noticeInfo(noticeId));
     }
@@ -93,7 +93,7 @@ public class NoticeController {  // 공지사항 Controller
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 공지사항 수정
-    public ResponseEntity<String> postNoticeUpdate(@PathVariable int noticeId, @RequestBody NoticeDto.NoticeCreateAndUpdate form) {
+    public ResponseEntity<String> postNoticeUpdate(@PathVariable(name = "noticeId") int noticeId, @RequestBody NoticeDto.NoticeCreateAndUpdate form) {
         noticeService.noticeUpdate(form, noticeId);
 
         return ResponseEntity.ok("{}");

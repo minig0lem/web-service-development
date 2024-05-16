@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.is;
 @AutoConfigureMockMvc
 public class BikeControllerTest {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Test
     @WithMockUser(roles = {"USER", "ADMIN"})

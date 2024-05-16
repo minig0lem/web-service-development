@@ -45,12 +45,18 @@ public class NoticeDto {
     }
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class NoticeCreateAndUpdate {
         private String title;
         private String content;
     }
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class NoticeDelete {
         private int notice_id;
     }

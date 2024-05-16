@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.is;
 @AutoConfigureMockMvc
 public class MainControllerTest {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Test
     @WithMockUser(username = "test")
@@ -50,5 +50,5 @@ public class MainControllerTest {
                 .andExpect(jsonPath("$.bike_id").value(nullValue()))
         ;
     }
-    
+
 }

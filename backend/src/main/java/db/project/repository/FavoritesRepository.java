@@ -39,8 +39,7 @@ public class FavoritesRepository {
     }
 
     public Optional<Boolean> findFavoriteById(String location_id, String user_id) {
-        String sql = "SELECT IF(location_id = :location_id and user_id =:user_id, 1, 0) AS favorite FROM favorites where location_id = :location_id and user_id =:user_id";
-
+        String sql = "SELECT 1 AS favorite FROM favorites WHERE location_id =:location_id and user_id =:user_id";
         final MapSqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("location_id", location_id)
                 .addValue("user_id", user_id);

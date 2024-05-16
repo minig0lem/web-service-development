@@ -23,7 +23,7 @@ import static org.hamcrest.Matchers.is;
 @AutoConfigureMockMvc
 public class BoardControllerTest {
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
 
     @Test
     @WithMockUser
