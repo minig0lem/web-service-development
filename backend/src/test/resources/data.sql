@@ -32,3 +32,8 @@ INSERT INTO favorites(user_id, location_id) values ('test', 'ST-1002');
 INSERT INTO notice(admin_id, title, content) values ('admin', 'test notice title', 'test notice content');
 INSERT INTO notice(admin_id, title, content) values ('admin', 'test notice title2', 'test notice content2');
 
+INSERT INTO rental(bike_id, user_id, start_location, end_location, rental_duration) values ('SPB-30063', 'test', 'ST-10', 'ST-10', 50);
+INSERT INTO rental(bike_id, user_id, start_location, end_location, rental_duration) values ('SPB-30074', 'test', 'ST-10', 'ST-10', 50);
+INSERT INTO rental(bike_id, user_id, start_location, end_location, rental_duration) values ('SPB-30213', 'test2', 'ST-10', 'ST-10', 30);
+INSERT INTO rental(bike_id, user_id, start_location, end_location, rental_duration) values ('SPB-30241', 'test3', 'ST-10', 'ST-10', 20);
+

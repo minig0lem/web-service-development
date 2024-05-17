@@ -35,7 +35,6 @@ public class TokenControllerTest {
     @DisplayName("액세스 토큰 생성 성공 테스트")
     void createAccessTokenTest() throws Exception {
         //Given
-
         //RefreshToken 생성
         String token = tokenProvider.createToken("test", 30 * 60 * 1000L);
         RefreshToken refreshToken = RefreshToken.builder()

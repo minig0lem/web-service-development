@@ -1,10 +1,11 @@
 package db.project.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
-@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PostRentalHistoryDto {
     private String start_date;
     private String end_date;

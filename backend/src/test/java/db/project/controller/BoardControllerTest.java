@@ -33,7 +33,6 @@ public class BoardControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/board/list/{page}", 1)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then
@@ -54,7 +53,6 @@ public class BoardControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/board/info/{boardId}",1)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then
@@ -76,7 +74,6 @@ public class BoardControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/board/info/{boardId}",5)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then

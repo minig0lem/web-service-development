@@ -33,7 +33,6 @@ public class LocationControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/admin/location/list/{page}", 1)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then

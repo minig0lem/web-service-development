@@ -33,7 +33,6 @@ public class NoticeControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/notice/list/{page}", 1)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then
@@ -56,7 +55,6 @@ public class NoticeControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/notice/info/{noticeId}", 1)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then
@@ -81,7 +79,6 @@ public class NoticeControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/notice/info/{noticeId}", 3)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then

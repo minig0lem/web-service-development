@@ -33,7 +33,6 @@ public class BikeControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/admin/bike/list/{page}", 1)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then

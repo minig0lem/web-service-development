@@ -32,7 +32,6 @@ public class MapControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/map")
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then

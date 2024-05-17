@@ -9,7 +9,7 @@ public class ReturnPostRentalHistoryDto {
     private String bike_id;
     private String start_time;
     private String start_location;
-    private String  end_time;
+    private String end_time;
     private String end_location;
 
     public ReturnPostRentalHistoryDto() {

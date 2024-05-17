@@ -358,7 +358,6 @@ public class UserControllerTest {
         //When
         ResultActions result = mockMvc.perform(
                 get("/api/admin/user/info/list/{page}", 1)
-                        .contentType(MediaType.APPLICATION_JSON)
         );
 
         //Then

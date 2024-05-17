@@ -1,5 +1,7 @@
 package db.project.controller;
 
+import com.google.gson.Gson;
+import db.project.dto.PostRentalHistoryDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,44 +12,47 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import static org.hamcrest.Matchers.nullValue;
+import java.time.LocalDateTime;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.is;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MainControllerTest {
+public class RentalHistoryControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     @WithMockUser(username = "test")
-    @DisplayName("사용자 메인화면 API 성공 테스트")
-    void getUserMainTest() throws Exception {
+    @DisplayName("대여/반납 이력 조회 성공 테스트")
+    void postRentalHistoryTest() throws Exception {
         //Given
+        PostRentalHistoryDto request = PostRentalHistoryDto.builder()
+                .start_date(String.valueOf(LocalDateTime.now()).substring(0, 10))
+                .end_date(String.valueOf(LocalDateTime.now().plusDays(3)).substring(0, 10))
+                .build();
+
         //When
         ResultActions result = mockMvc.perform(
-                get("/api/user/main")
+                post("/api/rentalHistory")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new Gson().toJson(request))
         );
 
         //Then
         result.andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(handler().handlerType(MainController.class))
-                .andExpect(handler().methodName("getUserMain"))
-                .andExpect(jsonPath("$.user_id", is("test")))
-                .andExpect(jsonPath("$.email", is("test")))
-                .andExpect(jsonPath("$.phone_number", is("test")))
-                .andExpect(jsonPath("$.cash", is(0)))
-                .andExpect(jsonPath("$.overfee", is(0)))
-                .andExpect(jsonPath("$.hour", is(1)))
-                .andExpect(jsonPath("$.isRented", is(0)))
-                .andExpect(jsonPath("$.bike_id").value(nullValue()))
+                .andExpect(handler().handlerType(RentalHistoryController.class))
+                .andExpect(handler().methodName("postRentalHistory"))
+                .andExpect(jsonPath("$.rentalInfo.size()", is(2)))
+                .andExpect(jsonPath("$.rentalInfo[0].bike_id", is("SPB-30063")))
+                .andExpect(jsonPath("$.rentalInfo[0].start_location", is("ST-10")))
+                .andExpect(jsonPath("$.rentalInfo[0].end_location", is("ST-10")))
+                .andExpect(jsonPath("$.rentalInfo[1].bike_id", is("SPB-30074")))
         ;
     }
-
 }
