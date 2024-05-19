@@ -140,10 +140,17 @@ CREATE TABLE rental(
 CREATE TABLE report(
     report_id int not null auto_increment,
     user_id varchar(50) not null,
-    content text not null,
+    bike_id varchar(10) not null,
     created_at timestamp not null default CURRENT_TIMESTAMP,
+    tire TINYINT not null,
+    chain TINYINT not null,
+    saddle TINYINT not null,
+    pedal TINYINT not null,
+    terminal TINYINT not null,
+    status varchar(20) not null default 'received',
     PRIMARY KEY(report_id),
-    CONSTRAINT report_user FOREIGN KEY(user_id) REFERENCES user(user_id)
+    CONSTRAINT report_user FOREIGN KEY(user_id) REFERENCES user(user_id),
+    CONSTRAINT report_bike FOREIGN KEY(bike_id) REFERENCES bike(bike_id)
     ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 

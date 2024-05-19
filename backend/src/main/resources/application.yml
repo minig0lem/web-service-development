@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_project?serverTimeZone=Asia/Seoul&CharacterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/{your_db_name}?serverTimeZone=Asia/Seoul&CharacterEncoding=UTF-8
     username: root
-    password: gt22073518
+    password: {your_password}
     hikari:
       maximum-pool-size: 10
       connection-timeout: 5000
@@ -18,14 +18,14 @@ spring:
       client:
         registration:
           google:
-            client-id: 487263303071-krt3a9aao9n9hkv7vbep57gc1ggom36c.apps.googleusercontent.com
-            client-secret: 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
+            client-id: {your_client-id}
+            client-secret: {your_client-secret}
             redirect-uri: "http://localhost:8080/login/oauth2/code/google"
             authorization-grant-type: authorization_code
             scope: email
 
 
 jwt:
-  issuer: gmltjd@naver.com
-  secret_key: db_projectdb_projectdb_projectdb_projectdb_projectdb_project
+  issuer: {your_issuer}
+  secret_key: {your_secret_key}
 

@@ -42,12 +42,8 @@ public class ReportController {  // 고장신고 Controller
     })
     // 고장신고
     public ResponseEntity<String> postReport(@RequestBody BreakdownReportDto.Report form){
-        try{
-            String result = reportService.report(form);
-            return ResponseEntity.ok("{}");
-        } catch (BreakdownReportException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+        reportService.report(form);
+        return ResponseEntity.ok("{}");
     }
 
     @ResponseBody
@@ -80,7 +76,6 @@ public class ReportController {  // 고장신고 Controller
     })
     public ResponseEntity<String> postReportRepair(@RequestBody BreakdownReportDto.BreakdownReportRepair form) {
         reportService.reportRepair(form);
-
         return ResponseEntity.ok("{}");
     }
 }

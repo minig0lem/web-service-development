@@ -365,7 +365,7 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(handler().handlerType(UserController.class))
                 .andExpect(handler().methodName("userInfoList"))
-                .andExpect(jsonPath("$.userCount", is(4)))
+                .andExpect(jsonPath("$.userCount", is(5)))
                 .andExpect(jsonPath("$.userInfoList[0].user_id", is("test")))
                 .andExpect(jsonPath("$.userInfoList[1].user_id", is("test2")))
         ;

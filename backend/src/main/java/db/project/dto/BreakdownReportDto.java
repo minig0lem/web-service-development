@@ -1,9 +1,6 @@
 package db.project.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +21,9 @@ public class BreakdownReportDto {
     }
 
     @Getter
-    @Setter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Report {
         private String bike_id;
         private Boolean tire;
@@ -51,6 +50,9 @@ public class BreakdownReportDto {
     }
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class BreakdownReportRepair {
         private String bike_id;
     }

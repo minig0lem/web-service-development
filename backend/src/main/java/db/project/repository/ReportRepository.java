@@ -52,9 +52,12 @@ public class ReportRepository {
 
         String insertReportSql = "INSERT INTO report(user_id, bike_id, tire, chain, saddle, pedal, terminal) " +
                 "values(:user_id, :bike_id, :tire, :chain, :saddle, :pedal, :terminal)";
-        int rowsUpdated = jdbcTemplate.update(insertReportSql, namedParameters);
-
-        return (rowsUpdated > 0) ? Optional.of("고장신고가 접수되었습니다.") : Optional.empty();
+        try{
+            int rowsUpdated = jdbcTemplate.update(insertReportSql, namedParameters);
+            return (rowsUpdated > 0) ? Optional.of("고장신고가 접수되었습니다.") : Optional.empty();
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     public void updateStatusByStatusAndBike(BreakdownReportDto.BreakdownReportRepair breakdownReportRepairDto) {
