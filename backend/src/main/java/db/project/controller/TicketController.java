@@ -66,7 +66,7 @@ public class TicketController {  // 사용자 이용권 구매 Controller
     @PostMapping("/ticket/gift")
     @Operation(
             summary = "이용권 선물",
-            description = "이용권 서물을 클릭했을 때의 API"
+            description = "이용권 선물을 클릭했을 때의 API"
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "이용권 선물 성공", content = {

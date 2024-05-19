@@ -36,7 +36,7 @@ public class BikeController {  // 자전거 생성 및 수정 Controller
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 자전거 List
-    public ResponseEntity<BikeListResponseDto> getBikeList(@PathVariable(required = false) Optional<Integer> page) {
+    public ResponseEntity<BikeListResponseDto> getBikeList(@PathVariable(value = "page", required = false) Optional<Integer> page) {
         BikeListResponseDto bikeListResponseDto = bikeService.bikeList(page);
 
         return ResponseEntity.ok(bikeListResponseDto);

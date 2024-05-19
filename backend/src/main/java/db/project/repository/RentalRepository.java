@@ -33,11 +33,10 @@ public class RentalRepository {
     }
 
     public int updateRentalByUserAndBike(PostRentalReturnDto postRentalReturnDto, String user_id) {
-        String rentalUpdateSql = "UPDATE rental r JOIN bike b ON r.bike_id = b.bike_id SET end_location = :end_location, " +
+        String rentalUpdateSql = "UPDATE rental SET end_location = :end_location, " +
                 "rental_duration = CEIL(TIMESTAMPDIFF(SECOND, start_time, now())/60), " +
-                "fee = CEIL(CEIL(TIMESTAMPDIFF(SECOND, start_time, now())/60) / 15) * 250, " +
-                "status = 'available', location_id = :end_location " +
-                "WHERE user_id = :user_id AND r.bike_id = :bike_id ORDER BY start_time DESC LIMIT 1";
+                "fee = CEIL(CEIL(TIMESTAMPDIFF(SECOND, start_time, now())/60) / 15) * 250 " +
+                "WHERE user_id = :user_id AND bike_id = :bike_id ORDER BY start_time DESC LIMIT 1";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("end_location", postRentalReturnDto.getEnd_location())
                 .addValue("bike_id", postRentalReturnDto.getBike_id())
@@ -71,7 +70,7 @@ public class RentalRepository {
                 .addValue("user_id", user_id);
 
         String sql = "SELECT bike_id, start_time, start_location, end_time, end_location FROM rental " +
-                "WHERE user_id =:user_id AND start_time BETWEEN DATE(:start_date) AND DATE(:end_date) " +
+                "WHERE user_id =:user_id AND start_time BETWEEN CAST(:start_date AS DATE) AND CAST(:end_date AS DATE) " +
                 "AND end_location IS NOT NULL ORDER BY start_time";
 
         return jdbcTemplate.query(sql, namedParameters, new BeanPropertyRowMapper<>(ReturnPostRentalHistoryDto.class));

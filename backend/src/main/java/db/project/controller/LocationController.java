@@ -34,7 +34,7 @@ public class LocationController {  // 대여소 추가 및 삭제 Controller
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 대여소 List
-    public ResponseEntity<LocationListResponseDto> getLocationList(@PathVariable(required = false) Optional<Integer> page) {
+    public ResponseEntity<LocationListResponseDto> getLocationList(@PathVariable(value = "page", required = false) Optional<Integer> page) {
         LocationListResponseDto locationListResponseDto = locationService.locationList(page);
 
         return ResponseEntity.ok(locationListResponseDto);

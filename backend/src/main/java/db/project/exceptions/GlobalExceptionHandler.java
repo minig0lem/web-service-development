@@ -2,6 +2,8 @@ package db.project.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -70,6 +72,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserException.class)
     public ResponseEntity<ErrorResponse> handleUserException(UserException e){
         ErrorResponse response = new ErrorResponse(e.getErrorCode());
+        response.setMessage(e.getMessage());
         return new ResponseEntity<>(response, HttpStatus.valueOf(e.getErrorCode().getStatus()));
     }
 
@@ -79,9 +82,31 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.valueOf(e.getErrorCode().getStatus()));
     }
 
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleUserNameNotFoundException(UsernameNotFoundException e){
+        ErrorResponse response = new ErrorResponse(ErrorCode.USERNAME_NOT_FOUND);
+        response.setMessage(e.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException e){
+        ErrorResponse response = new ErrorResponse(ErrorCode.WRONG_PASSWORD);
+        response.setMessage(e.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException e){
+        ErrorResponse response = new ErrorResponse(ErrorCode.ILLEGAL_ARGUMENT);
+        response.setMessage(e.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
 //    @ExceptionHandler(Exception.class)
 //    public ResponseEntity<ErrorResponse> handleException(Exception e){
 //        ErrorResponse response = new ErrorResponse(ErrorCode.INTER_SERVER_ERROR);
+//        response.setMessage(e.getMessage());
 //        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 //    }
 }

@@ -50,6 +50,7 @@ public class RentalService {
 
         if (checkRentalUpdate > 0) {
             Map<String, Object> value = rentalRepository.findRentalByUserAndBike(rentalReturnDto.getBike_id(), user_id);
+            bikeRepository.updateLocationAndStatusById(rentalReturnDto.getBike_id(), rentalReturnDto.getEnd_location());
             int price = (int) value.get("price");  // 이용권 요금
             int cash = (int) value.get("cash");  // 소지금
             int fee = (int) value.get("fee");  // 대여 금액

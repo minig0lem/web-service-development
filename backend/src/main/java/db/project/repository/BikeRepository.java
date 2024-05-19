@@ -87,4 +87,13 @@ public class BikeRepository {
 
         return (rowsUpdated > 0) ? Optional.of("자전거 상태가 업데이트되었습니다.") : Optional.empty();
     }
+
+    public void updateLocationAndStatusById(String bikeId, String locationId) {
+        final MapSqlParameterSource namedParameters = new MapSqlParameterSource()
+                .addValue("bike_id", bikeId)
+                .addValue("location_id", locationId);
+
+        String updateBikesql = "UPDATE bike SET location_id = :location_id, status='available' WHERE bike_id = :bike_id";
+        jdbcTemplate.update(updateBikesql, namedParameters);
+    }
 }

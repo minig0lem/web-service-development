@@ -12,8 +12,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
@@ -34,7 +32,7 @@ public class SurchargeController { // 추가요금 결제 Controller
             @ApiResponse(responseCode = "200", description = "추가요금 조회 성공")
     })
     // 추가요금 금액 확인
-    public ResponseEntity<ReturnGetSurchargeOverfeeInfoDto> postSurchargeInfo(){
+    public ResponseEntity<ReturnGetSurchargeOverfeeInfoDto> getSurchargeInfo(){
         ReturnGetSurchargeOverfeeInfoDto overfee = surchargeService.overfeeInfo();
 
         return ResponseEntity.ok(overfee);
@@ -55,7 +53,7 @@ public class SurchargeController { // 추가요금 결제 Controller
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 추가요금 지불
-    public ResponseEntity<String> postSurchargePay(){
+    public ResponseEntity<String> getSurchargePay(){
         surchargeService.overfeePay();
         return ResponseEntity.ok("{}");
 

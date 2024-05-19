@@ -1,9 +1,6 @@
 package db.project.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 public class BoardCommentDto {
 
@@ -19,11 +16,17 @@ public class BoardCommentDto {
     }
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class BoardCommentCreateAndUpdate {
         private String content;
     }
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class BoardCommentDelete {
         private int board_id;
         private int comment_id;

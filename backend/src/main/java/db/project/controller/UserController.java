@@ -70,7 +70,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // 회원정보 리스트
-    public ResponseEntity<UserInfoListResponseDto> userInfoList(@PathVariable(required = false) Optional<Integer> page) {
+    public ResponseEntity<UserInfoListResponseDto> userInfoList(@PathVariable(value = "page", required = false) Optional<Integer> page) {
         return ResponseEntity.ok(userService.selectUserInfoList(page));
     }
 
@@ -85,7 +85,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "내부 서버 오류", content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     // ID를 이용한 회원정보 리스트
-    public ResponseEntity<UserInfoListResponseDto> userInfoListById(@PathVariable(required = false) Optional<Integer> page, @RequestBody PostUserInfoListDto form) {
+    public ResponseEntity<UserInfoListResponseDto> userInfoListById(@PathVariable(value = "page", required = false) Optional<Integer> page, @RequestBody PostUserInfoListDto form) {
         return ResponseEntity.ok(userService.selectUserInfoListById(page, form));
     }
 

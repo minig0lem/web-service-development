@@ -1,10 +1,12 @@
 package db.project.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class PostRentalReturnDto {
     private String bike_id;
     private String end_location;

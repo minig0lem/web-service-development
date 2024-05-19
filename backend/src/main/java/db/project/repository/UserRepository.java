@@ -232,8 +232,9 @@ public class UserRepository {
     public ReturnGetUserMainDto userMain(String user_id) {
         final MapSqlParameterSource namedParameters = new MapSqlParameterSource()
                 .addValue("user_id", user_id);
-        String sql = "SELECT u.user_id, email, phone_number, cash, overfee, IF(u.ticket_id IS NULL, 0, hour) AS hour, " +
-                "IF(end_location IS NULL, 1, 0) AS isRented, IF(end_location IS NULL, bike_id, NULL) AS bike_id " +
+        String sql = "SELECT u.user_id, email, phone_number, cash, overfee, CASE WHEN u.ticket_id IS NULL THEN 0 ELSE hour END AS hour, " +
+                "CASE WHEN start_location IS NOT NULL AND end_location IS NULL THEN 1 ELSE 0 END AS isRented, " +
+                "CASE WHEN end_location IS NULL THEN bike_id ELSE NULL END AS bike_id " +
                 "FROM user u LEFT JOIN ticket t ON u.ticket_id = t.ticket_id " +
                 "LEFT JOIN rental r ON u.user_id = r.user_id WHERE u.user_id =:user_id ORDER BY start_time DESC LIMIT 1";
 
